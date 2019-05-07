@@ -1,0 +1,19 @@
+{
+  "name": "node-art",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "JiaHua",
+  "license": "ISC",
+  "dependencies": {
+    "art-template": "^4.13.2",
+    "express": "^4.16.4",
+    "express-art-template": "^1.0.1",
+    "layui": "0.0.1",
+    "router": "^1.3.3",
+    "swig": "^1.4.2"
+  }
+}

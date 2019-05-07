@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="zh">
+{{block "head"}}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,shrink-to-fit=no,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    <link rel="stylesheet" href="./style.css">
+    <link rel="stylesheet" href="./lib/layui/css/layui.css">
+    {{block "title"}}
+    <title>首页</title>
+    {{/block}}
+    {{block "style"}}{{/block}}
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+{{/block}}
+
+{{block "body"}}
+
+<body>
+    {{block "wrapper"}}
+    <div class="wrapper">
+        {{block "wrap"}}
+        {{block "header"}}
+        <div class="header">
+            <h2>header</h2>
+        </div>
+        {{/block}}
+        {{block "mian"}}
+        <div class="main">
+            <h2>main</h2>
+        </div>
+        {{/block}}
+        {{block "footer"}}
+        <div class="footer">
+            <h2>footer</h2>
+        </div>
+        {{/block}}
+        {{/block}}
+    </div>
+    {{/block}}
+
+    <!-- JS -->
+    {{block "script"}}
+    <script src="./lib/layui/layui.js"></script>
+    <script src="./base.js"></script>
+    {{/block}}
+</body>
+{{/block}}
+
+</html>

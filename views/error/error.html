@@ -1,0 +1,12 @@
+{{extend "./../layout/layout.html"}}
+
+{{block "title"}}
+<title>Error</title>
+{{/block}}
+
+{{block "wrapper"}}
+<h1>错误：{{ message }}</h1>
+<h2>{{ error.status }}</h2>
+<p>{{ error.desc }}</p>
+<a href="/">返回首页</a>
+{{/block}}
