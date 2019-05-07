@@ -1,6 +1,9 @@
 const express = require('express');
 const bcrypt = require("bcrypt");
+const mongoose = require("mongoose");
+const keys = require("./db/keys");
 const app = express();
+
 
 //引入路由模块
 const mainRouter = require("./routers/main/main");
@@ -42,21 +45,21 @@ app.use("/api", apiRouter);
 app.use("/admin", adminRouter);
 
 //catch 404
-app.use((req, res, next) => {
-    let err = new Error("Not Found");
-    err.status = 404;
-    next(err);
-})
-app.use((err, req, res, next) => {
-    res.status(err.status || 500);
-    res.render("error/error.html", {
-        message: err.message,
-        error: {
-            status: err.status,
-            desc: "不好意思你的页面被狗叼走了！"
-        }
-    });
-})
+// app.use((req, res, next) => {
+//     let err = new Error("Not Found");
+//     err.status = 404;
+//     next(err);
+// })
+// app.use((err, req, res, next) => {
+//     res.status(err.status || 500);
+//     res.render("error/error.html", {
+//         message: err.message,
+//         error: {
+//             status: err.status,
+//             desc: "不好意思你的页面被狗叼走了！"
+//         }
+//     });
+// })
 
 //端口监听
 const port = process.env.PORT || 9000;
@@ -64,3 +67,14 @@ app.listen(port, (err) => {
     if (err) throw err;
     console.log(`正在监听：${port}端口`);
 });
+
+//数据库连接 (mongodb://localhost:27017/blog)
+mongoose.connect(keys.localBD, {
+    useNewUrlParser: true
+}, (err) => {
+    if (!err) {
+        console.log("数据库连接成功！");
+    } else {
+        console.log("数据连接失败！");
+    }
+})
