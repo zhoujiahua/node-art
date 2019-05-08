@@ -1,0 +1,138 @@
+@charset "UTF-8";
+html,
+body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  width: 100%;
+}
+@media screen and (max-width: 768px) {
+  .menu-bar {
+    display: none;
+  }
+  .main {
+    padding-bottom: 0;
+  }
+  .foot-bar {
+    display: none;
+  }
+}
+@media screen and (max-width: 450px) {
+  .login .layui-form-item .layui-inline,
+  .register .layui-form-item .layui-inline,
+  .repass .layui-form-item .layui-inline {
+    display: inline-block;
+    margin-right: 0;
+    margin-bottom: 0;
+    clear: initial;
+  }
+}
+.wrapper {
+  position: relative;
+  min-height: 100%;
+  box-sizing: content-box;
+}
+.wrapper .main {
+  padding-bottom: 60px;
+}
+/* 清除浮动 */
+.clearfix:before,
+.clearfix:after {
+  content: "";
+  display: table;
+}
+.clearfix:after {
+  height: 0;
+  line-height: 0;
+  visibility: hidden;
+  clear: both;
+}
+.clearfix {
+  *zoom: 1;
+  /*IE/7/6*/
+}
+/* 公共样式提取 */
+.w {
+  width: 1200px;
+  margin: 0 auto;
+}
+.fl {
+  float: left;
+}
+.fr {
+  float: right;
+}
+.al {
+  text-align: left;
+}
+.ac {
+  text-align: center;
+}
+.ar {
+  text-align: right;
+}
+.hide {
+  display: none;
+}
+.ind {
+  text-indent: -9999em;
+}
+.login {
+  width: 90%;
+  margin: 0 auto;
+  padding: 40px 0 0;
+}
+.login .layui-form .layui-form-item label {
+  line-height: 26px;
+}
+.login .layui-form .repass-link a {
+  color: #1E9FFF;
+}
+.login .layui-form .login-link a {
+  color: #FF5722;
+}
+.register {
+  width: 90%;
+  margin: 0 auto;
+  padding: 40px 0 0;
+}
+.register .layui-form .layui-form-item label {
+  line-height: 26px;
+}
+.register .layui-form .reg-link a {
+  color: #FF5722;
+}
+.repass {
+  width: 90%;
+  margin: 0 auto;
+  padding: 40px 0 0;
+}
+.repass .layui-form .layui-form-item label {
+  line-height: 26px;
+}
+.repass .layui-form .reg-link a {
+  color: #1E9FFF;
+}
+.repass .layui-form .login-link a {
+  color: #FF5722;
+}
+.login-class .layui-layer-btn-c {
+  padding-bottom: 32px;
+}
+.login-class .layui-layer-btn-c a {
+  height: 36px;
+  line-height: 36px;
+  border-color: #1E9FFF;
+  background-color: #1E9FFF;
+  color: #fff;
+}
+.register-class .layui-layer-btn-c {
+  padding-bottom: 32px;
+}
+.register-class .layui-layer-btn-c a {
+  height: 36px;
+  line-height: 36px;
+  border-color: #FF5722;
+  background-color: #FF5722;
+  color: #fff;
+}

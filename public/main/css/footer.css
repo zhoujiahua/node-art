@@ -1,0 +1,11 @@
+@charset "UTF-8";
+.wrapper .footer {
+  width: 100%;
+  position: absolute;
+  bottom: 0;
+  background-color: #eee;
+  text-align: center;
+}
+.wrapper .footer p {
+  line-height: 60px;
+}

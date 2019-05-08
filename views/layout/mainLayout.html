@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<html lang="zh">
+{{block "head"}}
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport"
+        content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0,shrink-to-fit=no,user-scalable=no" />
+    <meta http-equiv="X-UA-Compatible" content="ie=edge,chrome=1">
+    {{block "title"}}
+    <title>模版</title>
+    {{/block}}
+    <link rel="stylesheet" href="./main/css/base.css">
+    <link rel="stylesheet" href="./lib/layui/css/layui.css">
+    <link rel="stylesheet" href="./main/css/header.css">
+    <link rel="stylesheet" href="./main/css/footer.css">
+    <link rel="stylesheet" href="./main/css/reset.css">
+    {{block "style"}}{{/block}}
+    <!-- 让IE8/9支持媒体查询，从而兼容栅格 -->
+    <!--[if lt IE 9]>
+    <script src="https://cdn.staticfile.org/html5shiv/r29/html5.min.js"></script>
+    <script src="https://cdn.staticfile.org/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+</head>
+{{/block}}
+
+{{block "body"}}
+
+<body>
+    {{block "wrapper"}}
+    <div class="wrapper">
+        {{block "wrap"}}
+        {{block "header"}}
+        <div class="header">
+            <div class="nav-bar">
+                <div class="layui-container">
+                    <div class="layui-row">
+                        <div class="layui-col-sm9   layui-col-xs12">
+                            <ul class="layui-nav" lay-filter="">
+                                <li class="layui-nav-item layui-this"><a href="/">首页</a></li>
+                                <li class="layui-nav-item"><a href="javascript:;">新闻</a></li>
+                                <li class="layui-nav-item"><a href="javascript:;">资讯</a></li>
+                                <li class="layui-nav-item">
+                                    <a href="javascript:;">产品</a>
+                                    <dl class="layui-nav-child">
+                                        <dd><a href="">移动模块</a></dd>
+                                        <dd><a href="">后台模版</a></dd>
+                                        <dd><a href="">电商平台</a></dd>
+                                    </dl>
+                                </li>
+                                <li class="layui-nav-item"><a href="javascript:;">社区</a></li>
+                            </ul>
+                        </div>
+                        <div class="layui-col-sm3  layui-col-xs12">
+                            {{block "userbox"}}{{/block}}
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/block}}
+        {{block "mian"}}
+        <div class="main">
+            <div class="layui-container">
+                <fieldset class="layui-elem-field layui-field-title" style="margin-top: 20px;">
+                    <legend>卡片面板</legend>
+                </fieldset>
+                <div style="padding: 20px; background-color: #F2F2F2;">
+                    <div class="layui-row layui-col-space15">
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header">卡片面板</div>
+                                <div class="layui-card-body">
+                                    卡片式面板面板通常用于非白色背景色的主体内<br>
+                                    从而映衬出边框投影
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md6">
+                            <div class="layui-card">
+                                <div class="layui-card-header">卡片面板</div>
+                                <div class="layui-card-body">
+                                    结合 layui 的栅格系统<br>
+                                    轻松实现响应式布局
+                                </div>
+                            </div>
+                        </div>
+                        <div class="layui-col-md12">
+                            <div class="layui-card">
+                                <div class="layui-card-header">标题</div>
+                                <div class="layui-card-body">
+                                    内容
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        {{/block}}
+        {{block "footer"}}
+        <div class="footer">
+            <div class="layui-container">
+                <div class="layui-main">
+                    <p>© 2019 <a href="/">CNKI.NET</a> MIT license</p>
+                </div>
+            </div>
+        </div>
+        {{/block}}
+        {{/block}}
+    </div>
+    {{/block}}
+
+    <!-- JS -->
+    <script src="./lib/layui/layui.js"></script>
+    <script src="./comm/comm.js"></script>
+    <script src="./main/js/main.js"></script>
+    {{block "script"}}{{/block}}
+</body>
+{{/block}}
+
+</html>

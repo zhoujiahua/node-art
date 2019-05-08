@@ -1,0 +1,67 @@
+{{extend "./../layout/mainLayout.html"}}
+{{block "title"}}
+<title>{{ title }}</title>
+{{/block}}
+{{block "wrapper"}}
+<div class="layui-container">
+    <div class="login">
+        <div class="layui-form" action="">
+            <div class="layui-form-item">
+                <label class="layui-form-label">账户：</label>
+                <div class="layui-input-inline">
+                    <input type="text" name="username" required lay-verify="required" placeholder="请输入账户"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">辅助文字</div>
+            </div>
+            <div class="layui-form-item">
+                <label class="layui-form-label">密码：</label>
+                <div class="layui-input-inline">
+                    <input type="password" name="password" required lay-verify="required" placeholder="请输入密码"
+                        autocomplete="off" class="layui-input">
+                </div>
+                <div class="layui-form-mid layui-word-aux">辅助文字</div>
+            </div>
+            <div class="layui-form-item">
+                <div class="layui-input-block">
+                    <button class="layui-btn" lay-submit lay-filter="loginBtn">登录</button>
+                    <button type="reset" class="layui-btn layui-btn-primary">重置</button>
+                </div>
+            </div>
+            </form>
+        </div>
+    </div>
+    {{/block}}
+
+    {{block "script"}}
+    <script>
+        layui.use(["layer", "form", "jquery"], function () {
+            var layer = layui.layer,
+                form = layui.form,
+                $ = layui.jquery;
+            //监听提交
+            form.on('submit(loginBtn)', function (data) {
+                var loginUser = data.field;
+                $.ajax({
+                    type: "POST",
+                    url: "/api/login",
+                    data: loginUser,
+                    dataType: "json",
+                    async: true,
+                    success: function (res) {
+                        if (res.code) {
+                            layer.msg(res.msg);
+                            return false;
+                        }
+                        setTimeout(function () {
+                            layer.msg(res.msg);
+                            window.location.href = "/";
+                        }, 600)
+                    }
+                });
+
+                return false;
+            });
+        });
+    </script>
+    {{/block}}

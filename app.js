@@ -1,9 +1,9 @@
 const express = require('express');
-const bcrypt = require("bcrypt");
 const mongoose = require("mongoose");
+const bodyParser = require("body-parser");
+const session = require("express-session");
 const keys = require("./db/keys");
 const app = express();
-
 
 //引入路由模块
 const mainRouter = require("./routers/main/main");
@@ -38,6 +38,22 @@ app.set('view options', {
 //         title: "atr-template"
 //     });
 // });
+
+//session
+app.use(session({
+    secret: "haoahaoxuexi",
+    resave: true,
+    saveUninitialized: false,
+    cookie: {
+        maxAge: 60000 * 30
+    }
+}))
+
+//使用body-parser
+app.use(bodyParser.urlencoded({
+    extend: false
+}));
+app.use(bodyParser.json());
 
 //使用路由
 app.use("/", mainRouter);
