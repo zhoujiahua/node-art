@@ -5,7 +5,7 @@
 {{block "wrapper"}}
 <div class="layui-container">
     <div class="login">
-        <div class="layui-form" action="">
+        <form class="layui-form" action="">
             <div class="layui-form-item">
                 <label class="layui-form-label">账户：</label>
                 <div class="layui-input-inline">
@@ -28,8 +28,7 @@
                     <button type="reset" class="layui-btn layui-btn-primary">重置</button>
                 </div>
             </div>
-            </form>
-        </div>
+        </form>
     </div>
     {{/block}}
 
@@ -47,7 +46,6 @@
                     url: "/api/login",
                     data: loginUser,
                     dataType: "json",
-                    async: true,
                     success: function (res) {
                         if (res.code) {
                             layer.msg(res.msg);

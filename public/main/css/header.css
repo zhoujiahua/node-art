@@ -9,3 +9,6 @@
 .wrapper .header .nav-bar .user-box .login-box a {
   color: inherit;
 }
+.wrapper .header .nav-bar .user-box .register-box {
+  line-height: 60px;
+}

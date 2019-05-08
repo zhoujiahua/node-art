@@ -124,4 +124,11 @@ router.post("/login", (req, res) => {
     })
 })
 
+//注销
+router.get("/loginout", (req, res) => {
+    req.session.destroy(err => {
+        res.redirect("/");
+    });
+})
+
 module.exports = router;
