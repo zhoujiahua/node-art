@@ -2,6 +2,7 @@ const express = require('express');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const flash = require("connect-flash");
 const keys = require("./db/keys");
 const app = express();
 
@@ -39,15 +40,25 @@ app.set('view options', {
 //     });
 // });
 
-//session
+//session & flash
 app.use(session({
     secret: "haoahaoxuexi",
     resave: true,
-    saveUninitialized: false,
+    saveUninitialized: true,
     cookie: {
         maxAge: 60000 * 30
     }
 }))
+
+app.use(flash());
+
+//全局变量
+app.use((req, res, next) => {
+    res.locals.success_msg = req.flash("success_msg");
+    res.locals.error_msg = req.flash("error_msg");
+    res.locals.user_info = req.flash("user_info");
+    next();
+})
 
 //使用body-parser
 app.use(bodyParser.urlencoded({
@@ -60,22 +71,22 @@ app.use("/", mainRouter);
 app.use("/api", apiRouter);
 app.use("/admin", adminRouter);
 
-//catch 404
-// app.use((req, res, next) => {
-//     let err = new Error("Not Found");
-//     err.status = 404;
-//     next(err);
-// })
-// app.use((err, req, res, next) => {
-//     res.status(err.status || 500);
-//     res.render("error/error.html", {
-//         message: err.message,
-//         error: {
-//             status: err.status,
-//             desc: "不好意思你的页面被狗叼走了！"
-//         }
-//     });
-// })
+// catch 404
+app.use((req, res, next) => {
+    let err = new Error("Not Found");
+    err.status = 404;
+    next(err);
+})
+app.use((err, req, res, next) => {
+    res.status(err.status || 500);
+    res.render("error/error.html", {
+        message: err.message,
+        error: {
+            status: err.status,
+            desc: "不好意思你的页面被狗叼走了！"
+        }
+    });
+})
 
 //端口监听
 const port = process.env.PORT || 9000;

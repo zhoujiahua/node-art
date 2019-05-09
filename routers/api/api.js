@@ -14,9 +14,21 @@ router.use((req, res, next) => {
 })
 
 router.get("/", (req, res) => {
-    res.render("api/api.html", {
-        title: "接口API"
-    });
+    if (req.session.userid) {
+        res.render("api/api.html", {
+            title: "接口API"
+        });
+    }else{
+        res.redirect("/login");
+    }
+
+    // if (req.flash.user_info._id) {
+    //     res.render("api/api.html", {
+    //         title: "接口API"
+    //     });
+    // } else {
+    //     res.redirect("/login");
+    // }
 })
 
 //注册
@@ -72,6 +84,7 @@ router.post("/register", (req, res) => {
                         email: newUserInfo.email,
                         date: newUserInfo.date
                     };
+                    req.flash("user_info", msgData.userInfo);
                     return res.json(msgData);
                 }).catch((err) => {
                     throw err;
@@ -119,6 +132,7 @@ router.post("/login", (req, res) => {
                 date: userInfo.date
             }
             req.session.userid = userInfo._id;
+            req.flash("user_info", msgData.userInfo);
             return res.json(msgData);
         })
     })
