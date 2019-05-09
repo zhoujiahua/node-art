@@ -1,4 +1,5 @@
 const express = require("express");
+const passport = require("passport");
 const User = require("./../../schema/Users");
 const router = express.Router();
 
@@ -29,6 +30,17 @@ router.get("/login", (req, res) => {
         });
     }
 
+})
+
+//token 用户信息返回
+router.get("/current", passport.authenticate("jwt", { session: false }), (req, res) => {
+    res.json({
+        _id: req.user._id,
+        username: req.user.username,
+        email: req.user.email,
+        avatar: req.user.avatar,
+        isAdmin: req.user.email
+    });
 })
 
 module.exports = router;

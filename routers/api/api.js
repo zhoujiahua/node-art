@@ -2,7 +2,9 @@ const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
 const gravatar = require("gravatar");
+const jwt = require("jsonwebtoken");
 const User = require("./../../schema/Users");
+const comm = require("./../../config/comm");
 
 //统一验证信息
 let msgData;
@@ -87,8 +89,15 @@ router.post("/register", (req, res) => {
                         avatar: newUserInfo.avatar,
                         date: newUserInfo.date
                     };
-                    req.flash("user_info", msgData.userInfo);
-                    return res.json(msgData);
+                    const rule = msgData.userInfo;
+                    jwt.sign(rule, comm.keys, { expiresIn: 3600 }, (err, token) => {
+                        if (err) throw err;
+                        req.flash("user_info", msgData.userInfo);
+                        msgData.userInfo.token = "Bearer " + token;
+                        return res.json(msgData);
+                    })
+                    // req.flash("user_info", msgData.userInfo);
+                    // return res.json(msgData);
                 }).catch((err) => {
                     throw err;
                     // msgData.code = 5;
@@ -135,9 +144,17 @@ router.post("/login", (req, res) => {
                 avatar: userInfo.avatar,
                 date: userInfo.date
             }
-            req.session.userid = userInfo._id;
-            req.flash("user_info", msgData.userInfo);
-            return res.json(msgData);
+            const rule = msgData.userInfo;
+            jwt.sign(rule, comm.keys, { expiresIn: 3600 }, (err, token) => {
+                if (err) throw err;
+                req.session.userid = userInfo._id;
+                req.flash("user_info", msgData.userInfo);
+                msgData.userInfo.token = "Bearer " + token;
+                return res.json(msgData);
+            })
+            // req.session.userid = userInfo._id;
+            // req.flash("user_info", msgData.userInfo);
+            // return res.json(msgData);
         })
     })
 })

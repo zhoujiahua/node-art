@@ -2,8 +2,9 @@ const express = require('express');
 const mongoose = require("mongoose");
 const bodyParser = require("body-parser");
 const session = require("express-session");
+const passport = require("passport");
 const flash = require("connect-flash");
-const keys = require("./db/keys");
+const comm = require("./config/comm");
 const app = express();
 
 //引入路由模块
@@ -96,7 +97,7 @@ app.listen(port, (err) => {
 });
 
 //数据库连接 (mongodb://localhost:27017/blog)
-mongoose.connect(keys.localBD, {
+mongoose.connect(comm.localBD, {
     useNewUrlParser: true
 }, (err) => {
     if (!err) {
@@ -105,3 +106,7 @@ mongoose.connect(keys.localBD, {
         console.log("数据连接失败！");
     }
 })
+
+//passport 
+app.use(passport.initialize());
+require("./config/passport")(passport);
