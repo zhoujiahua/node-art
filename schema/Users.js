@@ -13,9 +13,13 @@ const user = new Schema({
         type: String,
         required: true
     },
-    isAdmin:{
-        type:Boolean,
-        default:false
+    avatar: {
+        type: String,
+        required: true
+    },
+    isAdmin: {
+        type: Boolean,
+        default: false
     },
     date: {
         type: Date,

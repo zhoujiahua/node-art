@@ -1,6 +1,7 @@
 const express = require("express");
 const router = express.Router();
 const bcrypt = require("bcrypt");
+const gravatar = require("gravatar");
 const User = require("./../../schema/Users");
 
 //统一验证信息
@@ -18,7 +19,7 @@ router.get("/", (req, res) => {
         res.render("api/api.html", {
             title: "接口API"
         });
-    }else{
+    } else {
         res.redirect("/login");
     }
 
@@ -63,11 +64,12 @@ router.post("/register", (req, res) => {
             msgData.msg = "当前用户已存在！";
             return res.json(msgData);
         }
-
+        const avatar = gravatar.url(r.email, { s: '200', r: 'pg', d: 'mm' });
         //构造用户信息
         const newUser = new User({
             username: r.username,
             password: r.password,
+            avatar,
             email: r.email
         })
 
@@ -82,6 +84,7 @@ router.post("/register", (req, res) => {
                         username: newUserInfo.username,
                         isAdmin: newUserInfo.isAdmin,
                         email: newUserInfo.email,
+                        avatar: newUserInfo.avatar,
                         date: newUserInfo.date
                     };
                     req.flash("user_info", msgData.userInfo);
@@ -129,6 +132,7 @@ router.post("/login", (req, res) => {
                 username: userInfo.username,
                 isAdmin: userInfo.isAdmin,
                 email: userInfo.email,
+                avatar: userInfo.avatar,
                 date: userInfo.date
             }
             req.session.userid = userInfo._id;
